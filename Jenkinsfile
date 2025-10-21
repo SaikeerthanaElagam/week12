@@ -49,6 +49,20 @@ pipeline {
                     bat 'kubectl apply -f service.yaml' 
             } 
         }
+
+
+
+        stage('Run Selenium Tests with pytest') {
+    steps {
+        bat '''
+        python -m venv venv
+        call venv\\Scripts\\activate
+        python -m pip install -r requirements.txt
+        pytest
+        '''
+    }
+}
+
     }
     post {
         success {
